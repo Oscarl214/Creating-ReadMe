@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 //installed inquirer
 const inquirer = require("inquirer");
-const generateMarkdown = require("/Users/o/Desktop/README/Creating-ReadMe/02-Challenge/Develop/utils/generateMarkdown.js");
+const generateMarkdown = require("./utils/generateMarkdown.js");
 const fs = require("fs");
 
 // TODO: Create an array of questions for user input
