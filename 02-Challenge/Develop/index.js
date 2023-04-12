@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 //installed inquirer
 const inquirer = require("inquirer");
-const markDown = require("./utils/generateMarkdown.js");
+const generateMarkdown = require("/Users/o/Desktop/README/Creating-ReadMe/02-Challenge/Develop/utils/generateMarkdown.js");
 const fs = require("fs");
 
 // TODO: Create an array of questions for user input
@@ -11,68 +11,11 @@ const questions = [
   "Provide instructions and examples for use.",
   "List your collaborators",
   "Choose the type of license you are using",
+  "What is your email",
+  "What is your Github",
+  "Describe your project",
 ];
 
-function description(question, motivation, problem, learn) {
-  this.question = question;
-  this.motivation = motivation;
-  this.problem = problem;
-  this.learn = learn;
-}
-
-const userDescription = new description(
-  "Write a description of your project",
-  "Include motivation",
-  "Include any problems",
-  "& what you learned"
-);
-
-const generateREADME = ({
-  projectTitle,
-  description,
-  installation,
-  usage,
-  license,
-  contributing,
-  tests,
-  questions,
-}) => `
-# ${projectTitle}
-
-## Description
-
-${description}
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-## Installation
-${installation}
-
-## Usage
-
-${usage}
-
-## Credits
-
-${contributing}
-
-## License
-
-${license}
-
-## Tests
-
-${tests}
-
-## Questions
-
-${questions}
-`;
 
 // TODO: Create a function to write README file
 function writeToFile(READ, answers) {
@@ -93,7 +36,7 @@ function init() {
       {
         type: "input",
         name: "description",
-        message: JSON.stringify(userDescription),
+        message: questions[7],
       },
       {
         type: "input",
@@ -112,20 +55,32 @@ function init() {
       },
       {
         type: "input",
-        name: "usage",
+        name: "contributing",
         message: questions[3],
       },
       {
         type: "list",
         name: "license",
-        choices: ["MIT License", "GNU GPLv3"],
+        choices: ["MIT", "Apache", "GPL", "Apache 2", "BSD", "None"],
         message: questions[4],
+      },
+      {
+        type: "input",
+        name: "email",
+        message: questions[5],
+      },
+      {
+        type: "input",
+        name: "github",
+        message: questions[6],
       },
     ])
     .then((answers) => {
-      const readmePageContent = generateREADME(answers);
+      const readmePageContent = generateMarkdown(answers);
       writeToFile("README.md", readmePageContent);
     });
+
+    // markDown.generateMarkdown;
 }
 
 // Function call to initialize app
